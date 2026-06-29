@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECO-FAMILY RESTAURANT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: #272727;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 560px;
+      background: #272727;
+      position: relative;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      height: 162px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a1530, #241f3d, #0d0b16);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      opacity: 0.7;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 80, 140, .35), transparent 40%),
+        radial-gradient(circle at 75% 60%, rgba(80, 180, 255, .25), transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(120, 255, 170, .2), transparent 40%);
+    }
+
+    .hero-label {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .header-card {
+      position: relative;
+      margin-top: -32px;
+      border-radius: 24px 24px 0 0;
+      background: #181818;
+      padding: 24px 16px 8px;
+    }
+
+    .restaurant-name {
+      font-size: 32px;
+      line-height: 1.4;
+      font-weight: 400;
+      color: #dedede;
+      padding-bottom: 4px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding-bottom: 8px;
+      text-decoration: none;
+    }
+
+    .contact-row svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-row span {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #676767;
+    }
+
+    /* ── Back button ── */
+    #back-btn {
+      display: none;
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 20;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(0, 0, 0, .45);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+
+    #back-btn:hover {
+      background: rgba(0, 0, 0, .65);
+    }
+
+    #back-btn.visible {
+      display: flex;
+    }
+
+    /* ── Filter pills ── */
+    .filter-wrap {
+      position: relative;
+      background: #181818;
+      padding-bottom: 24px;
+    }
+
+    .filter-scroll {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 16px 16px 16px;
+      scrollbar-width: none;
+    }
+
+    .filter-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-fade {
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      background: linear-gradient(to right, transparent, #181818);
+    }
+
+    .pill {
+      flex-shrink: 0;
+      white-space: nowrap;
+      border-radius: 9999px;
+      border: 3px solid #858585;
+      padding: 7px 13px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.15;
+      cursor: pointer;
+      transition: all .15s ease-out;
+      background: #181818;
+      color: #858585;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    .pill:hover {
+      background: #2a2a2a;
+      color: #dedede;
+      border-color: #dedede;
+      transform: scale(1.05);
+    }
+
+    .pill.active {
+      background: #858585;
+      color: #181818;
+      border-color: #858585;
+    }
+
+    /* ── Search ── */
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      height: 64px;
+      background: #181818;
+      padding: 0 16px;
+    }
+
+    .search-inner {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-input {
+      width: 100%;
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background: #252424;
+      padding: 12px 48px 12px 16px;
+      font-size: 16px;
+      font-family: 'Rubik', sans-serif;
+      color: #dedede;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: #757575;
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: #181818;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #dedede;
+    }
+
+    /* ── Category list ── */
+    #cat-list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: #181818;
+      padding: 16px 16px 100px;
+    }
+
+    .empty-msg {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 14px;
+      color: #676767;
+    }
+
+    .cat-card {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cat-card-inner {
+      position: relative;
+      aspect-ratio: 528/176;
+      overflow: hidden;
+      border-radius: 26px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+    }
+
+    .cat-card-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease-out;
+    }
+
+    .cat-card-grad-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform .3s ease-out;
+    }
+
+    .cat-card:hover .cat-card-img,
+    .cat-card:hover .cat-card-grad-bg {
+      transform: scale(1.05);
+    }
+
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, .05) 0%, rgba(0, 0, 0, .55) 100%);
+      transition: opacity .3s;
+    }
+
+    .cat-card:hover .cat-overlay {
+      opacity: 0.8;
+    }
+
+    .cat-title-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+    }
+
+    .cat-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+      transition: transform .3s;
+    }
+
+    .cat-card:hover .cat-title {
+      transform: translateX(4px);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      display: flex;
+      justify-content: center;
+      background: #181818;
+      padding: 16px 0 80px;
+    }
+
+    .footer span {
+      font-size: 12px;
+      color: #676767;
+    }
+
+    /* ── Detail view ── */
+    #detail-view {
+      display: none;
+      background: #181818;
+      padding: 20px 16px 120px;
+      animation: fade-in 220ms ease-out;
+    }
+
+    #detail-view.visible {
+      display: block;
+    }
+
+    .detail-cat-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #858585;
+      margin-bottom: 16px;
+    }
+
+    .dish-row {
+      padding-bottom: 24px;
+      animation: row-in 280ms ease-out both;
+    }
+
+    .dish-photo {
+      aspect-ratio: 528/352;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #252525;
+      margin-bottom: 12px;
+    }
+
+    .dish-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dish-name-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .dish-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #dedede;
+    }
+
+    .dish-weight {
+      flex-shrink: 0;
+      font-size: 14px;
+      color: #757575;
+    }
+
+    .dish-desc {
+      margin-top: 4px;
+      font-size: 14px;
+      color: #676767;
+    }
+
+    .dish-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .dish-price {
+      font-size: 24px;
+      font-weight: 600;
+      color: #dedede;
+    }
+
+    .dish-price span {
+      font-size: 14px;
+      font-weight: 400;
+      color: #757575;
+      margin-left: 4px;
+    }
+
+    /* ── Quantity controls ── */
+    .qty-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .qty-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: #2a2a2a;
+      color: #dedede;
+      font-size: 20px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+      font-family: 'Rubik', sans-serif;
+      flex-shrink: 0;
+    }
+
+    .qty-btn:hover {
+      background: #3a3a3a;
+    }
+
+    .qty-btn:active {
+      background: #454545;
+      transform: scale(0.92);
+    }
+
+    .qty-num {
+      min-width: 32px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #dedede;
+    }
+
+    /* add-only button (when qty=0) */
+    .add-only-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: #2a2a2a;
+      color: #dedede;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+
+    .add-only-btn:hover {
+      background: #3a3a3a;
+    }
+
+    .add-only-btn:active {
+      background: #454545;
+      transform: scale(0.92);
+    }
+
+    /* ── Cart bar (bottom) ── */
+    #cart-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 560px;
+      z-index: 100;
+      padding: 10px 16px 16px;
+      background: linear-gradient(to top, #181818 70%, transparent);
+    }
+
+    #cart-bar.visible {
+      display: block;
+    }
+
+    #cart-bar-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      background: #dedede;
+      color: #181818;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Rubik', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .15s;
+    }
+
+    #cart-bar-btn:hover {
+      background: #ececec;
+    }
+
+    #cart-bar-btn:active {
+      background: #c8c8c8;
+    }
+
+    /* ── Order page ── */
+    #order-view {
+      display: none;
+      background: #181818;
+      padding: 20px 16px 40px;
+      animation: fade-in 220ms ease-out;
+      min-height: 60vh;
+    }
+
+    #order-view.visible {
+      display: block;
+    }
+
+    .order-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #dedede;
+      margin-bottom: 20px;
+    }
+
+    .order-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .order-item-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #dedede;
+      margin-bottom: 6px;
+    }
+
+    .order-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .order-item-price {
+      font-size: 18px;
+      font-weight: 600;
+      color: #dedede;
+    }
+
+    .order-item-price span {
+      font-size: 12px;
+      font-weight: 400;
+      color: #757575;
+      margin-left: 3px;
+    }
+
+    .order-total-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #3a3a3a;
+    }
+
+    .order-total-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #dedede;
+    }
+
+    .order-total-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #dedede;
+    }
+
+    .order-total-price span {
+      font-size: 14px;
+      font-weight: 400;
+      color: #757575;
+      margin-left: 4px;
+    }
+
+    .order-empty {
+      text-align: center;
+      padding: 48px 0;
+      font-size: 15px;
+      color: #676767;
+    }
+
+    /* ── Animations ── */
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes row-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cat-card {
+      animation: fade-in .22s ease-out both;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- Header (always visible) -->
+    <div style="position:relative" id="header-section">
+      <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-label">Restaurant ambience</div>
+      </div>
+
+      <button id="back-btn" aria-label="Назад" onclick="handleBack()">
+        <svg width="20" height="20" fill="none" viewBox="0 0 16 16">
+          <path d="M10 13 5 8l5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <div class="header-card">
+        <h1 class="restaurant-name">ECO-FAMILY RESTAURANT</h1>
+        <div style="padding-top:4px; padding-bottom:8px">
+          <a href="https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=41.5263089,60.7070183&travelmode=driving"
+            class="contact-row" target="_blank" rel="noopener">
+            <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+              <path
+                d="M8 1.5C5.24 1.5 3 3.74 3 6.5c0 3.5 5 8 5 8s5-4.5 5-8c0-2.76-2.24-5-5-5Zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                fill="#676767" />
+            </svg>
+            <span>Ургенчский район,Хорезмская область, Узбекистан</span>
+          </a>
+          <a href="tel:+998914250507" class="contact-row">
+            <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+              <path
+                d="M3.5 2h2.4l1 3-1.5 1a8 8 0 0 0 4.1 4.1l1-1.5 3 1v2.4c0 .6-.5 1-1 1C7.6 13 3 8.4 2.5 3c0-.5.4-1 1-1Z"
+                fill="#676767" />
+            </svg>
+            <span>+998 91 425 05 07</span>
+          </a>
+          <a href="https://www.instagram.com/eco_family_dacha_urgench_/" target="_blank" rel="noopener"
+            class="contact-row" style="padding-bottom:4px">
+            <svg width="18" height="18" fill="none" viewBox="0 0 18 18">
+              <rect x="2" y="2" width="14" height="14" rx="4" stroke="#858585" stroke-width="1.4" />
+              <circle cx="9" cy="9" r="3.2" stroke="#858585" stroke-width="1.4" />
+              <circle cx="13.2" cy="4.8" r="0.9" fill="#858585" />
+            </svg>
+            <span>Eco-family-dacha</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 1: Main category list -->
+    <div id="main-view">
+      <div class="filter-wrap">
+        <div class="filter-scroll" id="filter-pills"></div>
+        <div class="filter-fade"></div>
+      </div>
+      <div class="search-wrap">
+        <div class="search-inner">
+          <input class="search-input" id="search-input" type="text" placeholder="Поиск"
+            oninput="onSearch(this.value)" />
+          <button class="search-btn" type="button">
+            <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+              <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6" />
+              <path d="M14 14L17.5 17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="cat-list"></div>
+    </div>
+
+    <!-- VIEW 2: Category detail -->
+    <div id="detail-view"></div>
+
+    <!-- VIEW 3: Order page -->
+    <div id="order-view">
+      <div class="order-title">МОЙ ЗАКАЗ:</div>
+      <div id="order-items"></div>
+      <div id="order-total"></div>
+      <div class="footer" style="margin-top:24px"><span>oddmenu.com</span></div>
+    </div>
+
+    <!-- Cart bar (fixed bottom) -->
+    <div id="cart-bar">
+      <button id="cart-bar-btn" onclick="openOrder()">
+        Посмотреть заказ
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Data ──────────────────────────────────────────────────────────────────────
+    const filters = [
+      { id: 'dishes', label: 'Блюда' },
+      { id: 'bar', label: 'Бар' },
+      { id: 'cold', label: 'Холодный' },
+      { id: 'dessert', label: 'Десерт' },
+      { id: 'bread', label: 'Хлеб и чай' },
+    ]
+
+    const categories = [
+      {
+        id: 'uzbek', title: 'Узбекская кухня', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#3a2a1a,#5c3d22 45%,#1c1208)',
+        items: [
+          { id: 'uzbek-1', name: 'Плов с бараниной', weight: '350г', price: 45000, description: 'Рис, баранина, морковь, нут, изюм', image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=900&q=80' },
+          { id: 'uzbek-2', name: 'Лагман', weight: '400г', price: 38000, description: 'Домашняя лапша, говядина, овощи', image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=900&q=80' },
+          { id: 'uzbek-3', name: 'Манты', weight: '5шт', price: 32000, description: 'Тесто, говядина, лук, тыква', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'salads', title: 'Салатлар', filterId: 'cold',
+        gradient: 'linear-gradient(135deg,#1e3a1e,#3a5c2a 45%,#0c1c08)',
+        items: [
+          { id: 'salads-1', name: 'Свежий', weight: 'порция', price: 15000, description: 'Свежие овощи нарезкой — огурцы, помидоры, зелень', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
+          { id: 'salads-2', name: 'Аччик чучук', weight: 'порция', price: 15000, description: 'Острый узбекский салат из помидоров, лука и перца', image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=80' },
+          { id: 'salads-3', name: 'Японский', weight: 'порция', price: 40000, description: 'Салат в азиатском стиле с овощами и кунжутной заправкой', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
+          { id: 'salads-4', name: 'Цезарь', weight: 'порция', price: 36000, description: 'Классический салат с курицей, пармезаном, сухариками', image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=900&q=80' },
+          { id: 'salads-5', name: 'Мужской каприз', weight: 'порция', price: 40000, description: 'Сытный слоёный салат с мясом, сыром, яйцом и майонезом', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
+          { id: 'salads-6', name: 'Оркошка', weight: 'порция', price: 15000, description: 'Лёгкий овощной салат с зеленью', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
+          { id: 'salads-7', name: 'Хрустящий', weight: 'порция', price: 40000, description: 'Салат с хрустящими овощами и пикантной заправкой', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
+          { id: 'salads-8', name: 'Чакки', weight: 'порция', price: 12000, description: 'Лёгкий йогуртовый салат на основе сузьмы и зелени', image: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=900&q=80' },
+          { id: 'salads-9', name: 'Айрон', weight: '0.5л', price: 15000, description: 'Освежающий кисломолочный напиток', image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=900&q=80' },
+          { id: 'salads-10', name: 'Овощной ассорти', weight: 'большая порция', price: 50000, description: 'Сборная тарелка сезонных овощей', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
+          { id: 'salads-11', name: '3 кунлик', weight: 'порция', price: 10000, description: 'Квашеная капуста трёхдневной засолки', image: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=900&q=80' },
+          { id: 'salads-12', name: 'Соленый', weight: 'порция', price: 15000, description: 'Ассорти из солений', image: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'fruits', title: 'Мевалар', filterId: 'cold',
+        gradient: 'linear-gradient(135deg,#3a2a08,#8a6a1a 45%,#1a1004)',
+        items: [
+          { id: 'fruits-1', name: 'Мева Ассорти', weight: 'большая тарелка', price: 120000, description: 'Сборная тарелка из сезонных фруктов — яблоко, виноград, апельсин, киви', image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=900&q=80' },
+          { id: 'fruits-2', name: 'Ковун', weight: 'порция', price: 10000, description: 'Свежая дыня, нарезанная дольками', image: 'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=900&q=80' },
+          { id: 'fruits-3', name: 'Тарвуз', weight: 'порция', price: 10000, description: 'Свежий арбуз, нарезанный дольками', image: 'https://images.unsplash.com/photo-1563114773-84221bd62daa?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'dough-dishes', title: 'Хамир таомлар', filterId: 'bread',
+        gradient: 'linear-gradient(135deg,#3a2e14,#6e5722 45%,#1a1308)',
+        items: [
+          { id: 'dough-1', name: 'Тухум барак', weight: 'порция', price: 28000, description: 'Хорезмские вареники с жидкой начинкой из яиц и зелени', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+          { id: 'dough-2', name: 'Кук барак', weight: 'порция', price: 24000, description: 'Вареники с начинкой из зелени', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+          { id: 'dough-3', name: 'Кутир барак', weight: 'порция', price: 33000, description: 'Вареники, обжаренные до хрустящей корочки', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+          { id: 'dough-4', name: 'Кади барак', weight: 'порция', price: 24000, description: 'Вареники с начинкой из тыквы', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+          { id: 'dough-5', name: 'Барак Ассорти', weight: 'большая порция', price: 120000, description: 'Сборная тарелка из всех видов барака', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+          { id: 'dough-6', name: 'Ушок барак', weight: 'порция', price: 28000, description: 'Вареники маленького размера', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+          { id: 'dough-7', name: 'Капширма', weight: 'порция', price: 20000, description: 'Тонко раскатанное тесто, отварное, подаётся со сметаной', image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=900&q=80' },
+          { id: 'dough-8', name: 'Сомса', weight: '1шт', price: 15000, description: 'Слоёная выпечка с начинкой из мяса и лука, печётся в тандыре', image: 'https://images.unsplash.com/photo-1601314167599-264dc6e36356?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'taomlar', title: 'Таомлар', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#2a1f12,#6e4a1c 45%,#160f08)',
+        items: [
+          { id: 'taom-1', name: 'Мастава', weight: 'порция', price: 28000, description: 'Лёгкий суп с рисом, мясом и томатами', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=900&q=80' },
+          { id: 'taom-2', name: 'Уноши', weight: 'порция', price: 25000, description: 'Наваристый суп с домашней лапшой', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=900&q=80' },
+          { id: 'taom-3', name: 'Гўштсай', weight: 'порция', price: 65000, description: 'Сытное мясное блюдо с овощами', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=900&q=80' },
+          { id: 'taom-4', name: 'Козон кабоб', weight: 'большая порция', price: 120000, description: 'Мясо, обжаренное в казане с картофелем до золотистой корочки', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
+          { id: 'taom-5', name: 'Сарёга товук', weight: 'порция', price: 75000, description: 'Курица, запечённая целиком с пряностями', image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=900&q=80' },
+          { id: 'taom-6', name: 'Сарёга дил', weight: 'большая порция', price: 120000, description: 'Запечённое мясо по особому рецепту, подаётся целиком', image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'soups', title: 'Супы', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#2a1f12,#6e4a1c 45%,#160f08)',
+        items: [
+          { id: 'soup-1', name: 'Шурпа', weight: '400мл', price: 35000, description: 'Баранина, картофель, овощи', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=900&q=80' },
+          { id: 'soup-2', name: 'Мастава', weight: '350мл', price: 28000, description: 'Рис, говядина, томаты', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'bread', title: 'Лепёшки и хлеб', filterId: 'bread',
+        gradient: 'linear-gradient(135deg,#3d2a14,#8a5a20 45%,#1d1408)',
+        items: [
+          { id: 'bread-1', name: 'Лепёшка традиционная', weight: '1шт', price: 8000, description: 'Из тандыра', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80' },
+          { id: 'bread-2', name: 'Лепёшка с зеленью', weight: '1шт', price: 10000, description: 'Из тандыра, с укропом и кинзой', image: 'https://images.unsplash.com/photo-1549931319-a545749fcd28?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'kabobs', title: 'Кабоблар', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#3a2418,#6b3c1e 45%,#1a0f08)',
+        items: [
+          { id: 'kab-1', name: 'Шур кабоб', weight: '0.5кг', price: 120000, description: 'Солёная баранина, обжаренная крупными кусками, подаётся с луком и зеленью', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
+          { id: 'kab-2', name: 'Каймок кабоб', weight: '0.5кг', price: 125000, description: 'Нежное мясо, томлёное в собственном соку со сливочным соусом', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80' },
+          { id: 'kab-3', name: 'Кабоб ассорти', weight: '4-5 порций', price: 350000, description: 'Большая сборная тарелка из нескольких видов кабоба для компании', image: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=900&q=80' },
+          { id: 'kab-4', name: 'Эко доска', weight: '6-7 порций', price: 450000, description: 'Авторская подача мяса на деревянной доске с овощами — для большой компании', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80' },
+          { id: 'kab-5', name: 'Жиззa', weight: '0.5кг', price: 120000, description: 'Хрустящие жареные кусочки мяса с курдючным жиром и кольцами лука', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'shashlik', title: 'Шашлик', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#241616,#4a2222 45%,#120a0a)',
+        items: [
+          { id: 'sha-1', name: 'Гиждувон шашлик', weight: '1 шт', price: 18000, description: 'Рубленый шашлык по гиждуванскому рецепту, готовится на углях', image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&q=80' },
+          { id: 'sha-2', name: 'Кусковой мол гўшт', weight: 'порция', price: 26000, description: 'Шашлык из кусочков говядины, маринованной в специях', image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=900&q=80' },
+          { id: 'sha-3', name: 'Кусковой куй гўшт', weight: 'порция', price: 28000, description: 'Шашлык из кусочков баранины на углях', image: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=900&q=80' },
+          { id: 'sha-4', name: 'Ўрак кусковой', weight: 'порция', price: 22000, description: 'Шашлык из курицы, подаётся с лепёшкой и свежими овощами', image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=900&q=80' },
+          { id: 'sha-5', name: 'Крылышки шашлик', weight: 'порция', price: 25000, description: 'Куриные крылышки на шампурах в пряном маринаде', image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'fish-dishes', title: 'Болиқ таомлар', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#101820,#1d3a4a 45%,#080d12)',
+        items: [
+          { id: 'fish-1', name: 'Сетка балик', weight: 'порция', price: 100000, description: 'Рыба, запечённая целиком, подаётся с луковыми кольцами и зеленью', image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=900&q=80' },
+          { id: 'fish-2', name: 'Сополлдама балик', weight: 'порция', price: 100000, description: 'Рыба в кляре с хрустящей корочкой, подаётся с лимоном', image: 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=900&q=80' },
+          { id: 'fish-3', name: 'Ковурма балик', weight: 'порция', price: 85000, description: 'Обжаренные кусочки рыбы в хрустящей панировке', image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=900&q=80' },
+          { id: 'fish-4', name: 'Фольга балик', weight: 'порция', price: 110000, description: 'Рыба, запечённая в фольге с лимоном и овощами', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=900&q=80' },
+          { id: 'fish-5', name: 'Соусга балик', weight: 'порция', price: 110000, description: 'Рыба, тушёная в густом овощном соусе', image: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=900&q=80' },
+          { id: 'fish-6', name: 'Дималама балик', weight: 'порция', price: 110000, description: 'Рыба, тушёная с овощами по-домашнему', image: 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'steaks', title: 'Стейки', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#2e1c12,#5c3018 45%,#160d08)',
+        items: [
+          { id: 'steak-1', name: 'Асадо', weight: '1кг', price: 190000, description: '', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=900&q=80' },
+          { id: 'steak-2', name: 'Рибай стейк', weight: '300г', price: 95000, description: 'Прожарка на выбор', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=900&q=80' },
+          { id: 'steak-3', name: 'Стейк из говядины', weight: '250г', price: 78000, description: 'Прожарка на выбор', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'sides', title: 'Гарниры', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#2a2415,#574c22 45%,#141008)',
+        items: [
+          { id: 'side-1', name: 'Картофель фри', weight: '200г', price: 18000, description: 'С соусом на выбор', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=900&q=80' },
+          { id: 'side-2', name: 'Рис отварной', weight: '200г', price: 12000, description: '', image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=900&q=80' },
+        ],
+      },
+      {
+        id: 'pizza', title: 'Пицца', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#321a14,#7a3a1c 45%,#180c08)',
+        items: [
+          { id: 'pizza-1', name: 'Пицца Маргарита', weight: '30см', price: 40000, description: 'Томаты, моцарелла, базилик', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=80' },
+          { id: 'pizza-2', name: 'Пицца Пепперони', weight: '30см', price: 48000, description: 'Пепперони, сыр, томатный соус', image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=900&q=80' },
+        ],
+      },
+    ]
+
+    // ── State ─────────────────────────────────────────────────────────────────────
+    let activeFilter = filters[0].id
+    let searchQuery = ''
+    let selectedCat = null
+    // cart: { itemId -> qty }
+    const cart = {}
+    // current page: 'main' | 'detail' | 'order'
+    let currentPage = 'main'
+
+    // ── Helpers ───────────────────────────────────────────────────────────────────
+    function fmt(n) { return new Intl.NumberFormat('ru-RU').format(n) }
+
+    function getItemById(id) {
+      for (const cat of categories)
+        for (const item of cat.items)
+          if (item.id === id) return item
+      return null
+    }
+
+    function cartTotal() {
+      let total = 0
+      for (const [id, qty] of Object.entries(cart)) {
+        const item = getItemById(id)
+        if (item) total += item.price * qty
+      }
+      return total
+    }
+
+    function cartCount() {
+      return Object.values(cart).reduce((s, q) => s + q, 0)
+    }
+
+    function updateCartBar() {
+      const bar = document.getElementById('cart-bar')
+      const count = cartCount()
+      if (count > 0 && currentPage !== 'order') {
+        bar.classList.add('visible')
+        document.getElementById('cart-bar-btn').textContent = 'Посмотреть заказ'
+      } else {
+        bar.classList.remove('visible')
+      }
+    }
+
+    function getVisibleCategories() {
+      const q = searchQuery.trim().toLowerCase()
+      return categories.filter(cat => {
+        if (cat.filterId !== activeFilter) return false
+        if (!q) return true
+        return (
+          cat.title.toLowerCase().includes(q) ||
+          cat.items.some(i => i.name.toLowerCase().includes(q))
+        )
+      })
+    }
+
+    // ── Qty controls ──────────────────────────────────────────────────────────────
+    function changeQty(itemId, delta) {
+      const cur = cart[itemId] || 0
+      const next = cur + delta
+      if (next <= 0) {
+        delete cart[itemId]
+      } else {
+        cart[itemId] = next
+      }
+      updateCartBar()
+      // re-render the controls for this item everywhere
+      rerenderQty(itemId)
+      if (currentPage === 'order') renderOrder()
+    }
+
+    function rerenderQty(itemId) {
+      // update all qty widgets with this itemId on current page
+      document.querySelectorAll(`[data-qty-item="${itemId}"]`).forEach(el => {
+        const qty = cart[itemId] || 0
+        if (qty === 0) {
+          el.innerHTML = qtyAddOnlyHTML(itemId)
+        } else {
+          el.innerHTML = qtyControlsHTML(itemId, qty)
+        }
+      })
+    }
+
+    function qtyAddOnlyHTML(itemId) {
+      return `<button class="add-only-btn" onclick="changeQty('${itemId}',1)" aria-label="Добавить">
+    <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+      <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </button>`
+    }
+
+    function qtyControlsHTML(itemId, qty) {
+      return `<div class="qty-wrap">
+    <button class="qty-btn" onclick="changeQty('${itemId}',-1)">−</button>
+    <span class="qty-num">${qty}</span>
+    <button class="qty-btn" onclick="changeQty('${itemId}',1)">+</button>
+  </div>`
+    }
+
+    function qtyWidget(itemId) {
+      const qty = cart[itemId] || 0
+      const html = qty === 0 ? qtyAddOnlyHTML(itemId) : qtyControlsHTML(itemId, qty)
+      return `<div data-qty-item="${itemId}">${html}</div>`
+    }
+
+    // ── Render pills ──────────────────────────────────────────────────────────────
+    function renderPills() {
+      const el = document.getElementById('filter-pills')
+      el.innerHTML = filters.map(f => `
+    <button class="pill${f.id === activeFilter ? ' active' : ''}" onclick="setFilter('${f.id}')">${f.label}</button>
+  `).join('')
+    }
+
+    // ── Render category list ──────────────────────────────────────────────────────
+    function renderCategories() {
+      const list = document.getElementById('cat-list')
+      const visible = getVisibleCategories()
+      if (!visible.length) {
+        list.innerHTML = '<p class="empty-msg">Ничего не найдено</p>'
+        return
+      }
+      list.innerHTML = visible.map((cat, i) => {
+        const img = cat.items?.[0]?.image
+        const bg = img
+          ? `<img class="cat-card-img" src="${img}" alt="${cat.title}" loading="lazy" />`
+          : `<div class="cat-card-grad-bg" style="background:${cat.gradient}"></div>`
+        return `
+      <button class="cat-card" style="animation-delay:${i * 40}ms" onclick="openDetail('${cat.id}')">
+        <div class="cat-card-inner">
+          ${bg}
+          <div class="cat-overlay"></div>
+          <div class="cat-title-wrap"><h2 class="cat-title">${cat.title}</h2></div>
+        </div>
+      </button>`
+      }).join('')
+    }
+
+    // ── Render detail ─────────────────────────────────────────────────────────────
+    function renderDetail(cat) {
+      const el = document.getElementById('detail-view')
+      el.innerHTML = `
+    <div class="detail-cat-title">${cat.title}</div>
+    ${cat.items.map((item, i) => `
+      <div class="dish-row" style="animation-delay:${i * 60}ms">
+        <div class="dish-photo">
+          ${item.image ? `<img src="${item.image}" alt="${item.name}" loading="lazy" />` : ''}
+        </div>
+        <div class="dish-name-row">
+          <h3 class="dish-name">${item.name}</h3>
+          ${item.weight ? `<span class="dish-weight">${item.weight}</span>` : ''}
+        </div>
+        ${item.description ? `<p class="dish-desc">${item.description}</p>` : ''}
+        <div class="dish-price-row">
+          <p class="dish-price">${fmt(item.price)}<span>сум</span></p>
+          ${qtyWidget(item.id)}
+        </div>
+      </div>
+    `).join('')}
+  `
+    }
+
+    // ── Render order ──────────────────────────────────────────────────────────────
+    function renderOrder() {
+      const itemsEl = document.getElementById('order-items')
+      const totalEl = document.getElementById('order-total')
+      const entries = Object.entries(cart).filter(([, q]) => q > 0)
+
+      if (!entries.length) {
+        itemsEl.innerHTML = '<div class="order-empty">Корзина пуста</div>'
+        totalEl.innerHTML = ''
+        return
+      }
+
+      itemsEl.innerHTML = entries.map(([id, qty]) => {
+        const item = getItemById(id)
+        if (!item) return ''
+        return `
+      <div class="order-item">
+        <div class="order-item-name">${item.name}</div>
+        <div class="order-item-row">
+          <span class="order-item-price">${fmt(item.price * qty)}<span>сум</span></span>
+          ${qtyWidget(id)}
+        </div>
+      </div>`
+      }).join('')
+
+      const total = cartTotal()
+      totalEl.innerHTML = `
+    <div class="order-total-row">
+      <span class="order-total-label">Всего:</span>
+      <span class="order-total-price">${fmt(total)}<span>сум</span></span>
+    </div>`
+    }
+
+    // ── Navigation ────────────────────────────────────────────────────────────────
+    function showOnly(page) {
+      currentPage = page
+
+      // main-view
+      document.getElementById('main-view').style.display = page === 'main' ? '' : 'none'
+
+      // detail-view — keep content when going to order (so back works)
+      const dv = document.getElementById('detail-view')
+      if (page === 'detail') {
+        dv.style.display = ''
+        dv.classList.add('visible')
+      } else if (page === 'main') {
+        // fully reset detail when going home
+        dv.style.display = 'none'
+        dv.classList.remove('visible')
+        dv.innerHTML = ''
+      } else {
+        // order page — just hide detail visually, keep content
+        dv.style.display = 'none'
+      }
+
+      // order-view
+      const ov = document.getElementById('order-view')
+      if (page === 'order') {
+        ov.style.display = ''
+        ov.classList.add('visible')
+      } else {
+        ov.style.display = 'none'
+        ov.classList.remove('visible')
+      }
+
+      document.getElementById('back-btn').classList.toggle('visible', page !== 'main')
+      updateCartBar()
+    }
+
+    function setFilter(id) {
+      activeFilter = id
+      renderPills()
+      renderCategories()
+    }
+
+    function onSearch(val) {
+      searchQuery = val
+      renderCategories()
+    }
+
+    function openDetail(catId) {
+      const cat = categories.find(c => c.id === catId)
+      if (!cat) return
+      selectedCat = cat
+      showOnly('detail')
+      renderDetail(cat)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
+    function openOrder() {
+      showOnly('order')
+      renderOrder()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
+    function handleBack() {
+      if (currentPage === 'order') {
+        // go back to wherever we came from
+        if (selectedCat) {
+          showOnly('detail')
+          renderDetail(selectedCat)
+        } else {
+          showOnly('main')
+        }
+      } else if (currentPage === 'detail') {
+        selectedCat = null
+        showOnly('main')
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────────
+    renderPills()
+    renderCategories()
+    updateCartBar()
+  </script>
+</body>
+
+</html>
