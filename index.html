@@ -664,7 +664,8 @@
       <div class="header-card">
         <h1 class="restaurant-name">ECO-FAMILY RESTAURANT</h1>
         <div style="padding-top:4px; padding-bottom:8px">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=41.5263089,60.7070183&travelmode=driving" class="contact-row" target="_blank" rel="noopener">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=41.5263089,60.7070183&travelmode=driving"
+            class="contact-row" target="_blank" rel="noopener">
             <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path
                 d="M8 1.5C5.24 1.5 3 3.74 3 6.5c0 3.5 5 8 5 8s5-4.5 5-8c0-2.76-2.24-5-5-5Zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
@@ -672,6 +673,37 @@
             </svg>
             <span>Ургенчский район,Хорезмская область, Узбекистан</span>
           </a>
+          <script>
+            document.getElementById("openMap").addEventListener("click", function (e) {
+              e.preventDefault();
+
+              if (!navigator.geolocation) {
+                window.open("https://www.google.com/maps/dir/?api=1&destination=41.5263089,60.7070183&travelmode=driving", "_blank");
+                return;
+              }
+
+              navigator.geolocation.getCurrentPosition(
+                function (position) {
+                  const lat = position.coords.latitude;
+                  const lng = position.coords.longitude;
+
+                  const url =
+                    `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=41.5263089,60.7070183&travelmode=driving`;
+
+                  window.open(url, "_blank");
+                },
+                function () {
+                  // Agar joylashuv olinmasa ham xaritani ochadi
+                  window.open("https://www.google.com/maps/dir/?api=1&destination=41.5263089,60.7070183&travelmode=driving", "_blank");
+                },
+                {
+                  enableHighAccuracy: true,
+                  timeout: 10000,
+                  maximumAge: 0
+                }
+              );
+            });
+          </script>
           <a href="tel:+998914250507" class="contact-row">
             <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path
