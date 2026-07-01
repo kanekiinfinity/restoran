@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ECO-FAMILY RESTAURANT</title>
+  <title>DASTURXON RESTAURANT</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -662,7 +662,7 @@
       </button>
 
       <div class="header-card">
-        <h1 class="restaurant-name">ECO-FAMILY RESTAURANT</h1>
+        <h1 class="restaurant-name">DASTURXON RESTAURANT</h1>
         <div style="padding-top:4px; padding-bottom:8px">
           <a href="https://www.google.com/maps/dir/?api=1&destination=41.5263089,60.7070183&travelmode=driving"
             class="contact-row" target="_blank" rel="noopener">
@@ -704,23 +704,23 @@
               );
             });
           </script>
-          <a href="tel:+998914250507" class="contact-row">
+          <!-- <a href="tel:+998914250507" class="contact-row">
             <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path
                 d="M3.5 2h2.4l1 3-1.5 1a8 8 0 0 0 4.1 4.1l1-1.5 3 1v2.4c0 .6-.5 1-1 1C7.6 13 3 8.4 2.5 3c0-.5.4-1 1-1Z"
                 fill="#676767" />
             </svg>
             <span>+998 91 425 05 07</span>
-          </a>
-          <a href="https://www.instagram.com/eco_family_dacha_urgench_/" target="_blank" rel="noopener"
+          </a> -->
+          <!-- <a href="https://www.instagram.com/eco_family_dacha_urgench_/" target="_blank" rel="noopener"
             class="contact-row" style="padding-bottom:4px">
             <svg width="18" height="18" fill="none" viewBox="0 0 18 18">
               <rect x="2" y="2" width="14" height="14" rx="4" stroke="#858585" stroke-width="1.4" />
               <circle cx="9" cy="9" r="3.2" stroke="#858585" stroke-width="1.4" />
               <circle cx="13.2" cy="4.8" r="0.9" fill="#858585" />
             </svg>
-            <span>Eco-family-dacha</span>
-          </a>
+            <span>Dasturxon Restaurant</span>
+          </a> -->
         </div>
       </div>
     </div>
@@ -778,143 +778,141 @@
 
     const categories = [
       {
-        id: 'uzbek', title: 'Узбекская кухня', filterId: 'dishes',
+        id: 'uzbek', title: 'Суюк таомлар', filterId: 'dishes',
         gradient: 'linear-gradient(135deg,#3a2a1a,#5c3d22 45%,#1c1208)',
         items: [
-          { id: 'uzbek-1', name: 'Плов с бараниной', weight: '350г', price: 45000, description: 'Рис, баранина, морковь, нут, изюм', image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=900&q=80' },
-          { id: 'uzbek-2', name: 'Лагман', weight: '400г', price: 38000, description: 'Домашняя лапша, говядина, овощи', image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=900&q=80' },
-          { id: 'uzbek-3', name: 'Манты', weight: '5шт', price: 32000, description: 'Тесто, говядина, лук, тыква', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
+          { id: 'uzbek-1', name: 'Осма шурва', weight: '1п', price: 30000, description: 'Гўшт, картошка, пиёз, помидор, кўкат', image: 'img/osma-shorva.jpeg' },
+          { id: 'uzbek-2', name: 'Барак шурва', weight: '1п', price: 35000, description: 'Хамир бараклар, гўшт шўрва, кўкат', image: 'img/barak-shorva.jpg' },
+          { id: 'uzbek-3', name: 'Мастава', weight: '1п', price: 32000, description: 'Гуруч, гўшт, сабзавотлар, помидор шўрваси', image: 'img/mastava.jpeg' },
+          { id: 'uzbek-4', name: 'Борщ', weight: '1п', price: 30000, description: 'Лавлаги, карам, гўшт, қаймоқ билан', image: 'img/borsh.jpeg' },
+          { id: 'uzbek-5', name: 'Ун-оши', weight: '1п', price: 20000, description: 'Хамир бўлаклар, гўшт шўрваси, кўкат', image: 'img/un-oshi.jpeg' },
+        ],
+      },
+      {
+        id: 'baliq', title: 'Балиқ таомлар', filterId: 'dishes',
+        gradient: 'linear-gradient(135deg,#3a2a1a,#5c3d22 45%,#1c1208)',
+        items: [
+          { id: 'baliq-1', name: 'Қовурма балиқ', weight: '1кг', price: 85000, description: '', image: 'img/qovurma-baliq.jpeg' },
+          { id: 'baliq-2', name: 'Сетка балиқ', weight: '1кг', price: 75000, description: '', image: 'img/setka-baliq.jpeg' },
         ],
       },
       {
         id: 'salads', title: 'Салатлар', filterId: 'cold',
         gradient: 'linear-gradient(135deg,#1e3a1e,#3a5c2a 45%,#0c1c08)',
         items: [
-          { id: 'salads-1', name: 'Свежий', weight: 'порция', price: 15000, description: 'Свежие овощи нарезкой — огурцы, помидоры, зелень', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
-          { id: 'salads-2', name: 'Аччик чучук', weight: 'порция', price: 15000, description: 'Острый узбекский салат из помидоров, лука и перца', image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=80' },
-          { id: 'salads-3', name: 'Японский', weight: 'порция', price: 40000, description: 'Салат в азиатском стиле с овощами и кунжутной заправкой', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
-          { id: 'salads-4', name: 'Цезарь', weight: 'порция', price: 36000, description: 'Классический салат с курицей, пармезаном, сухариками', image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=900&q=80' },
-          { id: 'salads-5', name: 'Мужской каприз', weight: 'порция', price: 40000, description: 'Сытный слоёный салат с мясом, сыром, яйцом и майонезом', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
-          { id: 'salads-6', name: 'Оркошка', weight: 'порция', price: 15000, description: 'Лёгкий овощной салат с зеленью', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
-          { id: 'salads-7', name: 'Хрустящий', weight: 'порция', price: 40000, description: 'Салат с хрустящими овощами и пикантной заправкой', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
-          { id: 'salads-8', name: 'Чакки', weight: 'порция', price: 12000, description: 'Лёгкий йогуртовый салат на основе сузьмы и зелени', image: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=900&q=80' },
-          { id: 'salads-9', name: 'Айрон', weight: '0.5л', price: 15000, description: 'Освежающий кисломолочный напиток', image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=900&q=80' },
-          { id: 'salads-10', name: 'Овощной ассорти', weight: 'большая порция', price: 50000, description: 'Сборная тарелка сезонных овощей', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80' },
-          { id: 'salads-11', name: '3 кунлик', weight: 'порция', price: 10000, description: 'Квашеная капуста трёхдневной засолки', image: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=900&q=80' },
-          { id: 'salads-12', name: 'Соленый', weight: 'порция', price: 15000, description: 'Ассорти из солений', image: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=900&q=80' },
+          { id: 'salads-1', name: 'Салат Аччик чучук', weight: '1п', price: 15000, description: 'Острый узбекский салат из помидоров, лука и перца', image: 'salat-img/achchi-chuchuk.jpeg' },
+          { id: 'salads-2', name: 'Салат Свежий', weight: '1п', price: 18000, description: 'Свежие овощи нарезкой — огурцы, помидоры, зелень', image: 'salat-img/svejy-salat.jpeg' },
+          { id: 'salads-3', name: 'Салат Цезарь', weight: '1п', price: 35000, description: 'Классический салат с курицей, пармезаном, сухариками', image: 'salat-img/sezar-salat.jpeg' },
+          { id: 'salads-4', name: 'Салат Японский', weight: '1п', price: 35000, description: 'Салат в азиатском стиле с овощами и кунжутной заправкой', image: 'salat-img/yaponskiy-salat.jpeg' },
+          { id: 'salads-5', name: 'Хрустящий баклажан', weight: '1п', price: 30000, description: 'Хрустящие баклажаны с пикантной заправкой', image: 'salat-img/xrustyashiy-baklajan.jpeg' },
         ],
       },
       {
         id: 'fruits', title: 'Мевалар', filterId: 'cold',
         gradient: 'linear-gradient(135deg,#3a2a08,#8a6a1a 45%,#1a1004)',
         items: [
-          { id: 'fruits-1', name: 'Мева Ассорти', weight: 'большая тарелка', price: 120000, description: 'Сборная тарелка из сезонных фруктов — яблоко, виноград, апельсин, киви', image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=900&q=80' },
-          { id: 'fruits-2', name: 'Ковун', weight: 'порция', price: 10000, description: 'Свежая дыня, нарезанная дольками', image: 'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=900&q=80' },
-          { id: 'fruits-3', name: 'Тарвуз', weight: 'порция', price: 10000, description: 'Свежий арбуз, нарезанный дольками', image: 'https://images.unsplash.com/photo-1563114773-84221bd62daa?w=900&q=80' },
+          { id: 'fruits-4', name: 'Мева ёзги', weight: '1п', price: 70000, description: '', image: 'meva-img/meva.jpeg' },
+          { id: 'fruits-5', name: 'Мева қишки', weight: '1п', price: 100000, description: '', image: 'meva-img/meva.jpeg' },
+          { id: 'fruits-1', name: 'Қовун', weight: '1п', price: 15000, description: '', image: 'meva-img/qovun.png' },
+          { id: 'fruits-2', name: 'Тарвуз', weight: '1п', price: 10000, description: '', image: 'meva-img/tarvuz.png' },
+          { id: 'fruits-3', name: 'Қовун-тарвуз микс', weight: '1п', price: 20000, description: '', image: 'meva-img/qovun-tarvuz-miks.png' },
         ],
       },
       {
-        id: 'dough-dishes', title: 'Хамир таомлар', filterId: 'bread',
-        gradient: 'linear-gradient(135deg,#3a2e14,#6e5722 45%,#1a1308)',
-        items: [
-          { id: 'dough-1', name: 'Тухум барак', weight: 'порция', price: 28000, description: 'Хорезмские вареники с жидкой начинкой из яиц и зелени', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
-          { id: 'dough-2', name: 'Кук барак', weight: 'порция', price: 24000, description: 'Вареники с начинкой из зелени', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
-          { id: 'dough-3', name: 'Кутир барак', weight: 'порция', price: 33000, description: 'Вареники, обжаренные до хрустящей корочки', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
-          { id: 'dough-4', name: 'Кади барак', weight: 'порция', price: 24000, description: 'Вареники с начинкой из тыквы', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
-          { id: 'dough-5', name: 'Барак Ассорти', weight: 'большая порция', price: 120000, description: 'Сборная тарелка из всех видов барака', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
-          { id: 'dough-6', name: 'Ушок барак', weight: 'порция', price: 28000, description: 'Вареники маленького размера', image: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=900&q=80' },
-          { id: 'dough-7', name: 'Капширма', weight: 'порция', price: 20000, description: 'Тонко раскатанное тесто, отварное, подаётся со сметаной', image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=900&q=80' },
-          { id: 'dough-8', name: 'Сомса', weight: '1шт', price: 15000, description: 'Слоёная выпечка с начинкой из мяса и лука, печётся в тандыре', image: 'https://images.unsplash.com/photo-1601314167599-264dc6e36356?w=900&q=80' },
-        ],
-      },
-      {
-        id: 'taomlar', title: 'Таомлар', filterId: 'dishes',
+        id: 'taomlar', title: 'Гўштли таомлар', filterId: 'dishes',
         gradient: 'linear-gradient(135deg,#2a1f12,#6e4a1c 45%,#160f08)',
         items: [
-          { id: 'taom-1', name: 'Мастава', weight: 'порция', price: 28000, description: 'Лёгкий суп с рисом, мясом и томатами', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=900&q=80' },
-          { id: 'taom-2', name: 'Уноши', weight: 'порция', price: 25000, description: 'Наваристый суп с домашней лапшой', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=900&q=80' },
-          { id: 'taom-3', name: 'Гўштсай', weight: 'порция', price: 65000, description: 'Сытное мясное блюдо с овощами', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=900&q=80' },
-          { id: 'taom-4', name: 'Козон кабоб', weight: 'большая порция', price: 120000, description: 'Мясо, обжаренное в казане с картофелем до золотистой корочки', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
-          { id: 'taom-5', name: 'Сарёга товук', weight: 'порция', price: 75000, description: 'Курица, запечённая целиком с пряностями', image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=900&q=80' },
-          { id: 'taom-6', name: 'Сарёга дил', weight: 'большая порция', price: 120000, description: 'Запечённое мясо по особому рецепту, подаётся целиком', image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=900&q=80' },
+          { id: 'taom-1', name: 'Шор кабоб', weight: '1кг', price: 220000, description: '', image: 'img/shor-kabob.jpeg' },
+          { id: 'taom-2', name: 'Қаймоқ кабоб', weight: '1кг', price: 240000, description: '', image: 'img/qaymoqa-kabob.jpeg' },
+          { id: 'taom-3', name: 'Қозон кабоб', weight: '0.5кг', price: 190000, description: '', image: 'img/kozon-kabob.jpeg' },
+          { id: 'taom-4', name: 'Стейк', weight: '1кг', price: 220000, description: '', image: 'img/steyk.jpeg' },
+          { id: 'taom-5', name: 'Стейк бон филе', weight: '1кг', price: 250000, description: '', image: 'img/steyk-bonfile.jpeg' },
+          { id: 'taom-6', name: 'Сарёга дил', weight: '0.5кг', price: 100000, description: '', image: 'img/saryoga-dil.jpeg' },
+          { id: 'taom-7', name: 'Сетка кабоб', weight: '1кг', price: 230000, description: '', image: 'img/setka-kabob.jpeg' },
+          { id: 'taom-8', name: 'Тушонка мол гўшт', weight: '1п', price: 150000, description: '', image: 'img/tushonka.jpg' },
+          { id: 'taom-9', name: 'Сарёга товуқ', weight: '1шт', price: 75000, description: '', image: 'img/saryoga-tovuq.jpeg' },
         ],
       },
       {
-        id: 'soups', title: 'Супы', filterId: 'dishes',
-        gradient: 'linear-gradient(135deg,#2a1f12,#6e4a1c 45%,#160f08)',
-        items: [
-          { id: 'soup-1', name: 'Шурпа', weight: '400мл', price: 35000, description: 'Баранина, картофель, овощи', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=900&q=80' },
-          { id: 'soup-2', name: 'Мастава', weight: '350мл', price: 28000, description: 'Рис, говядина, томаты', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=900&q=80' },
-        ],
-      },
-      {
-        id: 'bread', title: 'Лепёшки и хлеб', filterId: 'bread',
+        id: 'bread', title: 'Нон', filterId: 'bread',
         gradient: 'linear-gradient(135deg,#3d2a14,#8a5a20 45%,#1d1408)',
         items: [
-          { id: 'bread-1', name: 'Лепёшка традиционная', weight: '1шт', price: 8000, description: 'Из тандыра', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80' },
-          { id: 'bread-2', name: 'Лепёшка с зеленью', weight: '1шт', price: 10000, description: 'Из тандыра, с укропом и кинзой', image: 'https://images.unsplash.com/photo-1549931319-a545749fcd28?w=900&q=80' },
+          { id: 'bread-1', name: 'Нон ассорти', weight: '1шт', price: 20000, description: '', image: 'non-img/non-assarti.jpeg' },
+          { id: 'bread-2', name: 'Патир', weight: '1шт', price: 15000, description: '', image: 'non-img/patir.jpeg' },
+          { id: 'bread-3', name: 'Чорак нон', weight: '1шт', price: 10000, description: '', image: 'non-img/chorak.webp' },
+          { id: 'bread-4', name: 'Буханка нон', weight: '1шт', price: 5000, description: '', image: 'non-img/buxanka.jpeg' },
         ],
       },
       {
-        id: 'kabobs', title: 'Кабоблар', filterId: 'dishes',
+        id: 'choy', title: 'Чой', filterId: 'bread',
+        gradient: 'linear-gradient(135deg,#3d2a14,#8a5a20 45%,#1d1408)',
+        items: [
+          { id: 'choy-1', name: 'Кўк чой', weight: '1п', price: 5000, description: '', image: 'choy-img/choy.jpeg' },
+          { id: 'choy-2', name: 'Қора чой', weight: '1п', price: 5000, description: '', image: 'choy-img/choy.jpeg' },
+          { id: 'choy-3', name: 'Лимонли кўк чой', weight: '1п', price: 20000, description: '', image: 'choy-img/limonli-choy.jpeg' },
+          { id: 'choy-4', name: 'Лимонли қора чой', weight: '1п', price: 20000, description: '', image: 'choy-img/limonli-choy.jpeg' },
+        ],
+      },
+      {
+        id: 'kabobs', title: 'Шашликлар', filterId: 'dishes',
         gradient: 'linear-gradient(135deg,#3a2418,#6b3c1e 45%,#1a0f08)',
         items: [
-          { id: 'kab-1', name: 'Шур кабоб', weight: '0.5кг', price: 120000, description: 'Солёная баранина, обжаренная крупными кусками, подаётся с луком и зеленью', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
-          { id: 'kab-2', name: 'Каймок кабоб', weight: '0.5кг', price: 125000, description: 'Нежное мясо, томлёное в собственном соку со сливочным соусом', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80' },
-          { id: 'kab-3', name: 'Кабоб ассорти', weight: '4-5 порций', price: 350000, description: 'Большая сборная тарелка из нескольких видов кабоба для компании', image: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=900&q=80' },
-          { id: 'kab-4', name: 'Эко доска', weight: '6-7 порций', price: 450000, description: 'Авторская подача мяса на деревянной доске с овощами — для большой компании', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80' },
-          { id: 'kab-5', name: 'Жиззa', weight: '0.5кг', price: 120000, description: 'Хрустящие жареные кусочки мяса с курдючным жиром и кольцами лука', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
+          { id: 'kab-1', name: 'Иджан шашлик', weight: '1шт', price: 17000, description: '', image: 'img/gijdivon.jpeg' },
+          { id: 'kab-2', name: 'Гиждувон', weight: '1шт', price: 25000, description: '', image: 'img/gijdivon.jpeg' },
+          { id: 'kab-3', name: 'Кускавой шашлик (мол гўшти)', weight: '1шт', price: 30000, description: '', image: 'img/mol-kuskavoy.jpeg' },
+          { id: 'kab-4', name: 'Кускавой шашлик (қўй гўшти)', weight: '1шт', price: 32000, description: '', image: 'img/qoy-kuskavoy.jpeg' },
+          { id: 'kab-5', name: 'Крылышка', weight: '1шт', price: 20000, description: '', image: 'img/krilishka.jpeg' },
+          { id: 'kab-6', name: 'Бағир шашлик', weight: '1шт', price: 25000, description: '', image: 'img/bagr-shashlik.jpeg' },
+          { id: 'kab-7', name: 'Орама шашлик', weight: '1шт', price: 25000, description: '', image: 'img/orama-shashlik.jpeg' },
         ],
       },
       {
-        id: 'shashlik', title: 'Шашлик', filterId: 'dishes',
-        gradient: 'linear-gradient(135deg,#241616,#4a2222 45%,#120a0a)',
-        items: [
-          { id: 'sha-1', name: 'Гиждувон шашлик', weight: '1 шт', price: 18000, description: 'Рубленый шашлык по гиждуванскому рецепту, готовится на углях', image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&q=80' },
-          { id: 'sha-2', name: 'Кусковой мол гўшт', weight: 'порция', price: 26000, description: 'Шашлык из кусочков говядины, маринованной в специях', image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=900&q=80' },
-          { id: 'sha-3', name: 'Кусковой куй гўшт', weight: 'порция', price: 28000, description: 'Шашлык из кусочков баранины на углях', image: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=900&q=80' },
-          { id: 'sha-4', name: 'Ўрак кусковой', weight: 'порция', price: 22000, description: 'Шашлык из курицы, подаётся с лепёшкой и свежими овощами', image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=900&q=80' },
-          { id: 'sha-5', name: 'Крылышки шашлик', weight: 'порция', price: 25000, description: 'Куриные крылышки на шампурах в пряном маринаде', image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=900&q=80' },
-        ],
-      },
-      {
-        id: 'fish-dishes', title: 'Болиқ таомлар', filterId: 'dishes',
+        id: 'xamir-dishes', title: 'Хамир таомлар', filterId: 'dishes',
         gradient: 'linear-gradient(135deg,#101820,#1d3a4a 45%,#080d12)',
         items: [
-          { id: 'fish-1', name: 'Сетка балик', weight: 'порция', price: 100000, description: 'Рыба, запечённая целиком, подаётся с луковыми кольцами и зеленью', image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=900&q=80' },
-          { id: 'fish-2', name: 'Сополлдама балик', weight: 'порция', price: 100000, description: 'Рыба в кляре с хрустящей корочкой, подаётся с лимоном', image: 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=900&q=80' },
-          { id: 'fish-3', name: 'Ковурма балик', weight: 'порция', price: 85000, description: 'Обжаренные кусочки рыбы в хрустящей панировке', image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=900&q=80' },
-          { id: 'fish-4', name: 'Фольга балик', weight: 'порция', price: 110000, description: 'Рыба, запечённая в фольге с лимоном и овощами', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=900&q=80' },
-          { id: 'fish-5', name: 'Соусга балик', weight: 'порция', price: 110000, description: 'Рыба, тушёная в густом овощном соусе', image: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=900&q=80' },
-          { id: 'fish-6', name: 'Дималама балик', weight: 'порция', price: 110000, description: 'Рыба, тушёная с овощами по-домашнему', image: 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=900&q=80' },
-        ],
-      },
-      {
-        id: 'steaks', title: 'Стейки', filterId: 'dishes',
-        gradient: 'linear-gradient(135deg,#2e1c12,#5c3018 45%,#160d08)',
-        items: [
-          { id: 'steak-1', name: 'Асадо', weight: '1кг', price: 190000, description: '', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=900&q=80' },
-          { id: 'steak-2', name: 'Рибай стейк', weight: '300г', price: 95000, description: 'Прожарка на выбор', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=900&q=80' },
-          { id: 'steak-3', name: 'Стейк из говядины', weight: '250г', price: 78000, description: 'Прожарка на выбор', image: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=80' },
-        ],
+          { id: 'hamir-1', name: 'Тухум барак', weight: '1п', price: 35000, description: '', image: 'img/tuxum-barak.jpeg' },
+          { id: 'hamir-2', name: 'Қўтир барак', weight: '1п', price: 40000, description: '', image: 'img/qotir-barak.jpeg' },
+          { id: 'hamir-3', name: 'Ушақ барак', weight: '1п', price: 35000, description: '', image: 'img/ushaq-barak.webp' },
+          { id: 'hamir-4', name: 'Қопширма', weight: '1шт', price: 20000, description: '', image: 'img/qopshirma.jpeg' },
+          { id: 'hamir-5', name: 'Гомма', weight: '1шт', price: 20000, description: '', image: 'img/gomma.jpg' },
+        ]
       },
       {
         id: 'sides', title: 'Гарниры', filterId: 'dishes',
         gradient: 'linear-gradient(135deg,#2a2415,#574c22 45%,#141008)',
         items: [
-          { id: 'side-1', name: 'Картофель фри', weight: '200г', price: 18000, description: 'С соусом на выбор', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=900&q=80' },
-          { id: 'side-2', name: 'Рис отварной', weight: '200г', price: 12000, description: '', image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=900&q=80' },
+          { id: 'side-1', name: 'Фри', weight: '', price: 20000, description: '', image: 'img/free.jpeg' },
+          { id: 'side-2', name: 'Айдахо', weight: '', price: 20000, description: '', image: 'img/aydaxo.jpeg' },
+          { id: 'side-3', name: 'Соус', weight: '', price: 3000, description: '', image: 'img/svejy-sous.jpg' },
+          { id: 'side-4', name: 'Свежий соус', weight: '', price: 5000, description: '', image: 'img/svejy-sous.jpg' },
+        ],
+      },
+      ////////////////  BAR //////////////////////
+      {
+        id: 'bar', title: 'Напитки', filterId: 'bar',
+        gradient: 'linear-gradient(135deg,#3a2a1a,#5c3d22 45%,#1c1208)',
+        items: [
+          { id: 'drink-1', name: 'Кола', weight: '1.5л', price: 17000, description: '', image: 'napitki-img/kola.jpeg' },
+          { id: 'drink-2', name: 'Фанта', weight: '1.5л', price: 17000, description: '', image: 'napitki-img/fanta.jpeg' },
+          { id: 'drink-3', name: 'Спрайт', weight: '1.5л', price: 17000, description: '', image: 'napitki-img/sprite.jpg' },
+          { id: 'drink-4', name: 'Тошкент сув', weight: '0.5л', price: 7000, description: '', image: 'napitki-img/toshkent-suv.webp' },
+          { id: 'drink-5', name: 'Сув', weight: '1.5л', price: 6000, description: '', image: 'napitki-img/suv.jpeg' },
+          { id: 'drink-6', name: 'Сув', weight: '1л', price: 4000, description: '', image: 'napitki-img/suv.jpeg' },
+          { id: 'drink-7', name: 'Сув', weight: '0.5л', price: 3000, description: '', image: 'napitki-img/suv.jpeg' },
         ],
       },
       {
-        id: 'pizza', title: 'Пицца', filterId: 'dishes',
-        gradient: 'linear-gradient(135deg,#321a14,#7a3a1c 45%,#180c08)',
+        id: 'moxito', title: 'Мохито', filterId: 'bar',
+        gradient: 'linear-gradient(135deg,#3a2a1a,#5c3d22 45%,#1c1208)',
         items: [
-          { id: 'pizza-1', name: 'Пицца Маргарита', weight: '30см', price: 40000, description: 'Томаты, моцарелла, базилик', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=80' },
-          { id: 'pizza-2', name: 'Пицца Пепперони', weight: '30см', price: 48000, description: 'Пепперони, сыр, томатный соус', image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=900&q=80' },
+          { id: 'moxito-1', name: 'Мохито классик', weight: '', price: 70000, description: '', image: 'moxito-img/moxito-klassik.jpeg' },
+          { id: 'moxito-2', name: 'Мохито клубничный', weight: '', price: 70000, description: '', image: 'moxito-img/moxito-klubnichny.jpeg' },
         ],
       },
     ]
+
+
+
 
     // ── State ─────────────────────────────────────────────────────────────────────
     let activeFilter = filters[0].id
